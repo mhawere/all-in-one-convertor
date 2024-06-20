@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        .container {
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        select {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #16a085;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="/static/logo.png" alt="Logo" width="150">
+    </div>
+    <div class="container">
+        <form action="/uploadfile/" enctype="multipart/form-data" method="post">
+            <input name="file" type="file">
+            <select name="input_format">
+                <!-- Video Formats -->
+                <option value="mp4">MP4</option>
+                <option value="avi">AVI</option>
+                <option value="mkv">MKV</option>
+                <option value="mov">MOV</option>
+                <option value="flv">FLV</option>
+                <option value="wmv">WMV</option>
+                <option value="webm">WEBM</option>
+                <option value="mpeg">MPEG</option>
+                <option value="mpg">MPG</option>
+                <option value="m4v">M4V</option>
+                <option value="3gp">3GP</option>
+                <option value="3g2">3G2</option>
+                <option value="vob">VOB</option>
+                <option value="ogv">OGV</option>
+                <!-- Audio Formats -->
+                <option value="mp3">MP3</option>
+                <option value="wav">WAV</option>
+                <option value="flac">FLAC</option>
+                <option value="aac">AAC</option>
+                <option value="ogg">OGG</option>
+                <option value="wma">WMA</option>
+                <option value="m4a">M4A</option>
+                <option value="aiff">AIFF</option>
+                <option value="alac">ALAC</option>
+                <option value="opus">OPUS</option>
+                <option value="amr">AMR</option>
+                <option value="mid">MID</option>
+                <option value="midi">MIDI</option>
+            </select>
+            
+            <select name="output_format">
+                <!-- Video Formats -->
+                <option value="mp4">MP4</option>
+                <option value="avi">AVI</option>
+                <option value="mkv">MKV</option>
+                <option value="mov">MOV</option>
+                <option value="flv">FLV</option>
+                <option value="wmv">WMV</option>
+                <option value="webm">WEBM</option>
+                <option value="mpeg">MPEG</option>
+                <option value="mpg">MPG</option>
+                <option value="m4v">M4V</option>
+                <option value="3gp">3GP</option>
+                <option value="3g2">3G2</option>
+                <option value="vob">VOB</option>
+                <option value="ogv">OGV</option>
+                <!-- Audio Formats -->
+                <option value="mp3">MP3</option>
+                <option value="wav">WAV</option>
+                <option value="flac">FLAC</option>
+                <option value="aac">AAC</option>
+                <option value="ogg">OGG</option>
+                <option value="wma">WMA</option>
+                <option value="m4a">M4A</option>
+                <option value="aiff">AIFF</option>
+                <option value="alac">ALAC</option>
+                <option value="opus">OPUS</option>
+                <option value="amr">AMR</option>
+                <option value="mid">MID</option>
+                <option value="midi">MIDI</option>
+            </select>
+            
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+</body>
+</html>

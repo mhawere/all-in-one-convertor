@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversion Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 300px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #1abc9c;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .download-link {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #1abc9c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .download-link:hover {
+            background-color: #16a085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversion Progress</h1>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+        <p id="progress-text">0%</p>
+        <a href="" id="download-link" class="download-link">Download Converted File</a>
+    </div>
+
+    <script>
+        // Function to poll the server for progress updates
+        function pollProgress(taskId) {
+    fetch(`/progress/${taskId}`)
+        .then(response => response.json())
+        .then(data => {
+            const progressBar = document.getElementById("progress-bar");
+            const progressText = document.getElementById("progress-text");
+
+            if (data.status === "complete") {
+                progressBar.style.width = "100%";
+                progressText.textContent = "Conversion Complete";
+                // Add code to display the download link or perform any other necessary actions
+            } else {
+                const progress = data.progress.progress; // Extract the progress percentage from the response
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${progress}%`;
+                setTimeout(() => pollProgress(taskId), 1000); // Continue polling after a certain interval
+            }
+        })
+        .catch(error => {
+            console.error("Error polling progress:", error);
+        });
+}
+        // Get the task ID from the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const taskId = urlParams.get("task_id");
+
+        // Start polling for progress updates
+        pollProgress(taskId);
+    </script>
+</body>
+</html>
