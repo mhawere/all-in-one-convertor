@@ -12,25 +12,41 @@ Track the progress of the video conversion process
 Download the converted video files
 
 **Prerequisites**
+
 Before running the application, ensure that you have the following prerequisites installed:
 
 **Python 3.7 or higher**
+
 FFmpeg (available in the system's PATH)
 
-**Installation
-**
-Step 1: Clone the repository:
-git clone https://github.com/your-username/your-repository.git
-Step 2: Navigate to the project directory:
+**Installation**
+
+_Step 1: Clone the repository:
+
+_git clone https://github.com/your-username/your-repository.git
+
+
+_Step 2: Navigate to the project directory:_
+
 cd your-repository
-Step 3: Create a virtual environment (optional but recommended):
-python -m venv venv
-Step 4: Activate the virtual environment:
+
+
+_Step 3: Create a virtual environment (optional but recommended):_
+
+python -m venv venv_
+
+
+_Step 4: Activate the virtual environment:_
+
+
   for windows:
     venv\Scripts\activate
   for macOS or Linux
     source venv/bin/activate
-Step 5: Install the required dependencies:
+
+    
+_Step 5: Install the required dependencies:_
+
 pip install -r requirements.txt
 
 **Configuration**
