@@ -1,22 +1,21 @@
 from fastapi import FastAPI, File, UploadFile, BackgroundTasks, Form
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 import uvicorn
 import os
 import uuid
+from dotenv import load_dotenv
 from conversion import convert_video, conversion_progress
 from fastapi.middleware.cors import CORSMiddleware
-import starlette.status
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://0.0.0.0:8080",  
-]
+origins = os.getenv("ORIGINS").split(",")
 
 app.add_middleware(
     CORSMiddleware,
@@ -63,4 +62,4 @@ async def progress_page(request: Request, task_id: str):
     return templates.TemplateResponse("progress.html", {"request": request, "task_id": task_id})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=0000, reload=True)
+    uvicorn.run(app, host=os.getenv("HOST"), port=int(os.getenv("PORT")), reload=True)
