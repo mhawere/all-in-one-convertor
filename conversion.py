@@ -16,14 +16,14 @@ def convert_video(input_file: str, output_file: str, task_id: str, input_format:
         '-i', input_file,
         '-c:v', 'libx264' if output_format == 'mp4' else 'copy',
         '-c:a', 'aac' if output_format == 'mp4' else 'copy',
-        '-b:a', '128k' if output_format == 'mp4' else None,  # Set the audio bitrate if output is mp4
-        '-max_muxing_queue_size', '9999',  # Increase the maximum muxing queue size
-        '-bufsize', '500M',  # Increase the buffer size
-        '-threads', '8',  # Set the number of threads for parallel processing
+        '-b:a', '128k' if output_format == 'mp4' else None,
+        '-max_muxing_queue_size', '9999', 
+        '-bufsize', '500M',  
+        '-threads', '8',  
         output_file
     ]
 
-    command = [arg for arg in command if arg is not None]  # Remove None values from the command list
+    command = [arg for arg in command if arg is not None]
 
     process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True)
     conversion_processes[task_id] = process
